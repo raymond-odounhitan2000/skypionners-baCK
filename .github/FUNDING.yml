@@ -1,0 +1,45 @@
+# FUNDING.yml - Professional setup for team/organization
+
+# GitHub Sponsors skypionners
+github:
+  - skypionners
+
+# Patreon (replace with your Patreon username)
+patreon: skypionners 
+
+# Open Collective (replace with your Open Collective username)
+open_collective: skypionners
+
+# Ko-fi (replace with your Ko-fi username)
+ko_fi: skypionners
+
+# Tidelift (replace with Tidelift platform-name/package-name, e.g., npm/babel)
+tidelift: skypionners
+
+# Community Bridge (replace with project name, e.g., cloud-foundry)
+community_bridge: skypionners
+
+# Liberapay (replace with Liberapay username)
+liberapay: skypionners
+
+# IssueHunt (replace with IssueHunt username)
+issuehunt: skypionners
+
+# LFX Crowdfunding (replace with project name, e.g., cloud-foundry)
+lfx_crowdfunding: skypionners
+
+# Polar (replace with Polar username)
+polar: skypionners
+
+# Buy Me a Coffee (replace with username)
+buy_me_a_coffee: skypionners
+
+# thanks.dev (replace with username)
+thanks_dev: skypionners
+
+# Custom links (replace with up to 4 custom sponsorship URLs)
+custom:
+  - https://skypionners.com/donate
+  - https://skypionners.com/support
+  - https://skypionners.com/contribute
+  - https://skypionners.com/sponsor
