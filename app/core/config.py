@@ -2,7 +2,7 @@ from typing import List
 from pydantic import field_validator, model_validator
 from pydantic_settings import BaseSettings
 import secrets
-
+import os
 
 class Settings(BaseSettings):
     # Application Configuration
@@ -25,6 +25,16 @@ class Settings(BaseSettings):
     # Logging
     LOG_LEVEL: str = "INFO"
 
+    # Email Configuration
+    MAIL_USERNAME: str = os.getenv("MAIL_USERNAME") or ""
+    MAIL_PASSWORD: str = os.getenv("MAIL_PASSWORD") or ""
+    MAIL_FROM: str = os.getenv("MAIL_FROM") or "noreply@skypionners.com"
+    MAIL_PORT: int = os.getenv("MAIL_PORT") or 587
+    MAIL_SERVER: str = os.getenv("MAIL_SERVER") or "smtp.gmail.com"
+    MAIL_TLS: bool = os.getenv("MAIL_TLS") or True
+    MAIL_SSL: bool = os.getenv("MAIL_SSL") or False
+    MAIL_FROM_NAME: str = os.getenv("MAIL_FROM_NAME") or "Skypionners"
+
     @model_validator(mode='before')
     @classmethod
     def assemble_cors_origins(cls, v):
@@ -40,4 +50,3 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
-
