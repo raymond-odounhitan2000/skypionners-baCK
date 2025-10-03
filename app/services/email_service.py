@@ -1,4 +1,18 @@
 from fastapi_mail import FastMail, MessageSchema, ConnectionConfig
+from jinja2 import Environment, FileSystemLoader
+import os
+
+# Configuration Jinja2 pour les templates
+template_dir = os.path.join(os.path.dirname(__file__), '..', '..', 'templates', 'email')
+env = Environment(loader=FileSystemLoader(template_dir))
+
+def render_email_template(template_name: str, **kwargs) -> str:
+    """Rendre un template email avec Jinja2."""
+    try:
+        template = env.get_template(template_name)
+        return template.render(**kwargs)
+    except Exception as e:
+        return f'Erreur de template: {e}' 
 from app.core.config import settings
 
 # Configuration MINIMALE - seulement les paramètres essentiels
