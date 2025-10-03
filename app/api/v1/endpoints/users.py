@@ -10,13 +10,13 @@ from app.services.auth_service import (
     get_user_by_email,
     get_current_active_user
 )
+from app.services.email_service import send_welcome_email
 from app.core.database import get_db
 
 router = APIRouter()
 
-
 @router.post("/", response_model=User, status_code=status.HTTP_201_CREATED)
-def create_new_user(user: UserCreate, db: Session = Depends(get_db)):
+async def create_new_user(user: UserCreate, db: Session = Depends(get_db)):
     """Create a new user."""
     # Check if user already exists
     db_user = get_user_by_username(db, username=user.username)
@@ -33,8 +33,18 @@ def create_new_user(user: UserCreate, db: Session = Depends(get_db)):
             detail="Email already registered"
         )
 
-    return create_user(db=db, user=user)
+    # Create the user
+    db_user = create_user(db=db, user=user)
 
+    # Send welcome email automatically
+    try:
+        await send_welcome_email(db_user.email, db_user.username)
+        print(f"✅ Email de bienvenue envoyé à {db_user.email}")
+    except Exception as e:
+        print(f"⚠️ Avertissement: Email non envoyé - {e}")
+        # Ne pas empêcher la création d utilisateur si l email échoue
+
+    return db_user
 
 @router.get("/", response_model=List[User])
 def read_users(
@@ -47,12 +57,10 @@ def read_users(
     users = get_users(db, skip=skip, limit=limit)
     return users
 
-
 @router.get("/me", response_model=User)
 def read_current_user(current_user: User = Depends(get_current_active_user)):
     """Get current authenticated user info."""
     return current_user
-
 
 @router.get("/{username}", response_model=User)
 def read_user(
@@ -68,7 +76,6 @@ def read_user(
             detail="User not found"
         )
     return db_user
-
 
 @router.put("/{username}", response_model=User)
 def update_user(
@@ -97,7 +104,6 @@ def update_user(
     db.commit()
     db.refresh(db_user)
     return db_user
-
 
 @router.patch("/{username}/status")
 def toggle_user_status(
@@ -130,7 +136,6 @@ def toggle_user_status(
         "message": f"User {username} has been {status_text}",
         "user": db_user
     }
-
 
 @router.delete("/{username}", status_code=status.HTTP_204_NO_CONTENT)
 def delete_user(
