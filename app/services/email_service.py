@@ -20,9 +20,10 @@ async def send_email(recipients, subject, body, html_body=None):
         subject=subject,
         recipients=recipients,
         body=body,
-        html=html_body or body
+        html=html_body or body,
+        subtype='html' if html_body else 'plain'
     )
-    
+
     await fm.send_message(message)
     return {"message": "Email sent successfully"}
 
