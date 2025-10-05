@@ -43,21 +43,27 @@ def main(input_dir: str = "merra2_data", output_dir: str = "data/csv", pattern: 
     out_file = output_path / "tempo_merra2_all.csv"
     first_write = True
 
+    i = 0
+
     for file_path in files:
-        logging.info("Lecture de %s", file_path)
-        try:
-            # Use context manager to ensure file handles are closed promptly
-            with xr.open_dataset(file_path) as ds:
-                df = ds.to_dataframe().reset_index()
+        if i == 0:
+         i=1
+         logging.info("Lecture de %s", file_path)
+         try:
+             # Use context manager to ensure file handles are closed promptly
+             with xr.open_dataset(file_path) as ds:
+                 df = ds.to_dataframe().reset_index()
 
-            # Append to CSV to avoid keeping everything in memory
-            df.to_csv(out_file, mode="w" if first_write else "a", header=first_write, index=False)
-            first_write = False
-            # free memory
-            del df
+             # Append to CSV to avoid keeping everything in memory
+             df.to_csv(out_file, mode="w" if first_write else "a", header=first_write, index=False)
+             first_write = False
+             # free memory
+             del df
 
-        except Exception as e:
-            logging.exception("Erreur en traitant %s : %s", file_path, e)
+         except Exception as e:
+             logging.exception("Erreur en traitant %s : %s", file_path, e)
+        else:
+            break
 
     logging.info("✅ Fichier fusionné sauvegardé : %s", out_file)
 

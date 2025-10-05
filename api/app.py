@@ -4,9 +4,11 @@ from typing import Optional, Dict, Any, List
 from pathlib import Path
 import joblib
 import pandas as pd
-import httpx
+import httpx, sys
 import asyncio
 
+root = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(root))
 from models.train_pm25 import predict_pm25_from_history
 
 app = FastAPI(title="PM2.5 Forecast API")
