@@ -1,0 +1,28 @@
+{
+  "artifacts": {
+    "h10m": {
+      "best_params": {
+        "xgb__learning_rate": 0.1,
+        "xgb__max_depth": 3,
+        "xgb__n_estimators": 100
+      },
+      "cv_best_mae": 0.49995825491296797,
+      "test_mae": 0.2673687318001978,
+      "test_rmse": 0.3934100517911338,
+      "model_path": "/home/dona-erick/skypionners-baCK/models/pm25_xgb_h10m.joblib",
+      "scaler_path": "/home/dona-erick/skypionners-baCK/models/pm25_xgb_scaler_h10m.joblib"
+    },
+    "h30m": {
+      "best_params": {
+        "xgb__learning_rate": 0.1,
+        "xgb__max_depth": 6,
+        "xgb__n_estimators": 100
+      },
+      "cv_best_mae": 1.236202257694525,
+      "test_mae": 0.7259392335441675,
+      "test_rmse": 1.0289219187435557,
+      "model_path": "/home/dona-erick/skypionners-baCK/models/pm25_xgb_h30m.joblib",
+      "scaler_path": "/home/dona-erick/skypionners-baCK/models/pm25_xgb_scaler_h30m.joblib"
+    }
+  }
+}

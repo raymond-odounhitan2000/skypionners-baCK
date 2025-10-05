@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% set title = "Alerte de sécurité" %}
+{% set header_bg = "linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%)" %}
+{% set button_bg = "linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%)" %}
+{% set header_title = "🔐 Alerte de sécurité" %}
+{% set header_subtitle = "Action requise" %}
+{% block content %}
+<h2>Activité suspecte détectée</h2>
+<div style="background: #fff3cd; padding: 20px; border-radius: 5px; margin: 20px 0; border-left: 4px solid #ffc107;">
+    <p><strong>Localisation :</strong> {{ location }}</p>
+    <p><strong>Appareil :</strong> {{ device }}</p>
+    <p><strong>Heure :</strong> {{ timestamp }}</p>
+    <p><strong>Action :</strong> {{ action }}</p>
+</div>
+
+<div style="text-align: center;">
+    <a href="{{ secure_account_url }}" class="button">Sécuriser mon compte</a>
+</div>
+
+<p>Si vous n'êtes pas à l'origine de cette activité, contactez immédiatement notre support.</p>
+{% endblock %}

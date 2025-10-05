@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% set title = "Newsletter SkyPionners" %}
+{% set header_bg = "linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)" %}
+{% set button_bg = "linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)" %}
+{% set header_title = "📧 Newsletter SkyPionners" %}
+{% set header_subtitle = "Les dernières actualités" %}
+{% block content %}
+<h2>{{ subject }}</h2>
+<div style="background: #f8f9fa; padding: 20px; border-radius: 5px; margin: 20px 0; border-left: 4px solid #fcb69f;">
+    {{ content | safe }}
+</div>
+
+{% if cta_text and cta_url %}
+<div style="text-align: center;">
+    <a href="{{ cta_url }}" class="button">{{ cta_text }}</a>
+</div>
+{% endif %}
+
+<p>Pour vous désabonner, <a href="{{ unsubscribe_url }}">cliquez ici</a>.</p>
+{% endblock %}

@@ -160,8 +160,21 @@ venv.bak/
 dmypy.json
 
 # Pyre type checker
+
+/data/
+/merra2_data/
+/models/pm25_model_h10m.joblib
+/models/pm25_model_h30m.joblib
+/models/pm25_scaler_h10m.joblib
+/models/pm25_scaler_h30m.joblib
+/models/pm25_xgb_h10m.joblib
+/models/pm25_xgb_h30m.joblib
+/models/pm25_xgb_scaler_h30m.joblib
+/models/pm25_xgb_scaler_h10m.joblib
+
 .pyre/
 
+/tempo_data/
 # pytype static type analyzer
 .pytype/
 
